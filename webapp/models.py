@@ -5,7 +5,7 @@ from django.utils import timezone
 class Pastebin(models.Model):
     author = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
-    language = models.CharField(max_length=50,default='python')
+    language = models.CharField(max_length=50)
     code = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
 
@@ -16,6 +16,7 @@ class Pastebin(models.Model):
 class Account(models.Model):
     user_name = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
 
     def __str__(self):
         return self.user_name
