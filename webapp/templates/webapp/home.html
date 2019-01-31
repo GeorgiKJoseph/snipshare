@@ -1,5 +1,18 @@
-<html>
-    <head>
-        HELLO
-    </head>
-</html>
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+{% for x in pastebin %}
+        <div>
+           
+           <p>{{x.author}} @{{x.created_date}}</p>
+           <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
+
+           <h8>{{x.language}}</h8>
+           <p>{{x.code|linebreaksbr}}</p>
+          
+           <hr>
+       </div>
+{% endfor %}
+</div>
+{% endblock %}
