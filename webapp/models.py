@@ -11,3 +11,11 @@ class Pastebin(models.Model):
 
     def __str__(self):
         return self.title
+
+#account model... 
+class Account(models.Model):
+    user_name = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user_name
