@@ -22,7 +22,7 @@ def signup(request):
         form = AccountForm()
     return render(request,'webapp/signup.html',{'form':form})
 
-def login(request):
+def login(request):                         #to be modified
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
