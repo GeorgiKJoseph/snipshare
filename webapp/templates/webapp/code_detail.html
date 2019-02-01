@@ -2,4 +2,21 @@
 
 {% block content %}
 
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+            <div>
+               
+               <p>{{x.author}} @{{x.created_date}}</p>
+               <h2>{{ x.title }}</h2> 
+               <h6>{{ x.upvotes }} Likes _ _ _ _ _<a>{{x.language}}</a></h6>
+      
+               <p>{{x.code|linebreaksbr}}</p>
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-info">Like</button>
+                </form>
+           </div>
+
+    </div>
+
 {% endblock %}
