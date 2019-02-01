@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Pastebin, Account, Vote
-from .forms import PastebinForm, AccountForm
+from .forms import PastebinForm, AccountForm, LoginForm
 from django.utils import timezone
 
 def home(request):
@@ -21,6 +21,16 @@ def signup(request):
     else:
         form = AccountForm()
     return render(request,'webapp/signup.html',{'form':form})
+
+def login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            return redirect('home')         #has to be changed to login page or home page
+    else:
+        form = LoginForm()
+    return render(request,'webapp/login.html',{'form':form})
+
 
 def add_new(request):
     if request.method == "POST":
