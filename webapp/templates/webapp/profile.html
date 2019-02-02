@@ -1,16 +1,17 @@
 {% extends 'webapp/base.html' %}
 
 {% block content %}
-   
+ 
         <h2>Profile</h2>
-        <br><hr>
+        <br>
+        <p><a href="/profile/edit" onclick="w3_close()" >edit</a> </p>
+        <hr>
+
         <p>UserName : {{user}}</p>
         <p>FirstName : {{user.first_name}}</p>
         <p>LastName : {{user.last_name}}</p>   
         <p>Email id : {{user.email}}</p>   
 
         </p>
-           
-       </div>
 
 {% endblock %}
