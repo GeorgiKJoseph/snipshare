@@ -23,12 +23,13 @@ body {font-size:16px;}
     <h3 class="w3-padding-64"><b>SnipShare</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="/profile" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a> 
-    <a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Search</a> 
+      
+    <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">LogIn</a> 
+    <a href="/signup" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Sign Up</a> 
+<!---    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Search</a> 
     <a href="{% url 'add_new' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Add</a> 
-   <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">LogOut</a> 
-<!---     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
    -->
   </div>
 </nav>
@@ -45,13 +46,16 @@ body {font-size:16px;}
 <div class="w3-container" style="margin-top:80px" id="showcase">
   </div>
 
-  <div class="w3-main" style="margin-left:340px;margin-right:40px"> 
-<div class='container'>
-{% block content %}
 
-{% endblock %}
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+ 
+    <h2>You have logged out</h2>
+
 </div>
-</div>
+  
+
+
+
 <script>
 // Script to open and close sidebar
 function w3_open() {
