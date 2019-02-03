@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Pastebin, UserAccount, Vote
+from .models import Pastebin, UserAccount, Vote, Friend
 from .forms import PastebinForm, AccountForm, LoginForm, EditProfileForm
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -69,7 +69,19 @@ def add_new(request):
         form = PastebinForm()
         return render(request,'webapp/add_new.html',{'form':form})
 
+
+@login_required
+def change_friends(request,operation,pk):
+        new_friend = Friend.objects.get(pk=pk)
+        if operation == 'make':
+                Friend.make_friend(request.user,new_friend)
+        elif operation == 'lose':      
+                Friend.lose_friend(request.user,new_friend)
+
+
 @login_required
 def view_friends(request):
-        users = User.objects.all()
+        users = User.objects.exclude(id=request.user.id) 
         return render(request,'webapp/friends.html',{'users':users})
+
+        
