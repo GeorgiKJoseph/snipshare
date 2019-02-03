@@ -3,16 +3,14 @@
 {% block content %}
 
 {% for x in pastebin %}
-        <div>
-           
-           <p>{{x.author}} @{{x.created_date}}</p>
-           <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
-           <h6>{{ x.upvotes }} Likes _______________{{x.language}}</h6>
-  
-           <p>{{x.code|linebreaksbr}}</p>
-          
-           <hr>
-       </div>
+<div>   
+    <p>{{x.author}} @{{x.created_date}}</p>
+    <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
+    <h6>{{ x.upvotes }} Likes _______________{{x.language}}</h6>
+    <p>{{x.code|linebreaksbr}}</p>
+    <hr>
+</div>
 {% endfor %}
+
 
 {% endblock %}
