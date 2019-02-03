@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url
 from . import views
 from django.contrib.auth.views import login, logout
@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^profile/view/(?P<pk>\d+)/$',views.view_profile, name='view_profile_with_pk'),
     url(r'^profile/friends/$',views.view_friends, name='view_friends'),
 
-
+#    url(r'^webapp/', include(('webapp.urls','webapp'), namespace='webapp')),
 ]

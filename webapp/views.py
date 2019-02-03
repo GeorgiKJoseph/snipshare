@@ -32,13 +32,11 @@ def code_detail(request,pk):
 
 
 @login_required
-def view_profile(request, pk=None):
-
+def view_profile(request, pk=None):   #this view can be call from friends.html to view friend's profile(no done yet)
         if pk:
                 users=User.objects.get(pk=pk)
         else:
                 users=request.user
-
         return render(request,'webapp/profile.html',{'users': users})
 
 

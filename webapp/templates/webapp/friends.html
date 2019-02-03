@@ -5,7 +5,10 @@
 <h2>Friends</h2>
 <br><hr>
 {% for user in users %}   
-    <p><a href="">{{ user.username }}</a></p> 
+    <p><a href="{% url 'view_profile_with_pk' pk=user.pk %}">{{ user.username }}</a></p>  
+                                <!--here view_profile_with_pk is the name given to the link
+                                    profile/view/<int:pk> in webapp.urls.py -->
+
     <br>
 {% endfor %}
 
