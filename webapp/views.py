@@ -35,9 +35,10 @@ def code_detail(request,pk):
 def view_profile(request, pk=None):   #this view can be call from friends.html to view friend's profile(no done yet)
         if pk:
                 users=User.objects.get(pk=pk)
+                return render(request,'webapp/friends_profile.html',{'users':users})
         else:
                 users=request.user
-        return render(request,'webapp/profile.html',{'users': users})
+                return render(request,'webapp/profile.html',{'users': users})
 
 
 
@@ -72,16 +73,27 @@ def add_new(request):
 
 @login_required
 def change_friends(request,operation,pk):
-        new_friend = Friend.objects.get(pk=pk)
+        new_friend = User.objects.get(pk=pk)
         if operation == 'make':
                 Friend.make_friend(request.user,new_friend)
+                return redirect('view_others')
         elif operation == 'lose':      
                 Friend.lose_friend(request.user,new_friend)
+                return redirect('view_friends')
+        return redirect('home')
+
+
+@login_required
+def view_others(request):
+        users = User.objects.exclude(id=request.user.id) 
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()        
+        return render(request,'webapp/others.html',{'users':users,'friends':friends})
 
 
 @login_required
 def view_friends(request):
-        users = User.objects.exclude(id=request.user.id) 
-        return render(request,'webapp/friends.html',{'users':users})
-
-        
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+        args = {'friends':friends}
+        return render(request,'webapp/friends.html',args)

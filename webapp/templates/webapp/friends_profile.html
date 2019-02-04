@@ -1,0 +1,17 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+ 
+        <h2>Profile</h2>
+        <br>
+        <p><a href="{% url 'change_friends' operation='make' pk=users.pk %}" onclick="w3_close()" >Add Friend</a> </p>
+        <hr>
+
+        <p>UserName : {{users}}</p>
+        <p>FirstName : {{users.first_name}}</p>
+        <p>LastName : {{users.last_name}}</p>   
+        <p>Email id : {{users.email}}</p>   
+
+        </p>
+
+{% endblock %}
