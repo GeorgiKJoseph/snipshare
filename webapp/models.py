@@ -14,7 +14,8 @@ class Friend(models.Model):
         friend, created = cls.objects.get_or_create(
             current_user=current_user
         )
-        friend.users.add(new_friend)
+        if current_user != new_friend:
+            friend.users.add(new_friend)
 
  
     @classmethod
@@ -30,11 +31,10 @@ class UserAccount(models.Model):
     city = models.CharField(max_length=50,default='')
     phone = models.IntegerField(default=0)
 
-def create_account(sender, **kwargs):
-    if kwargs['created']:
-        user_account= UserAccount.objects.create(user=kwargs['instance'])
-
-post_save.connect(create_account, sender=User)
+    def create_account(sender, **kwargs):
+        if kwargs['created']:
+            user_account= UserAccount.objects.create(user=kwargs['instance'])
+            post_save.connect(create_account, sender=User) 
 
 
 class Pastebin(models.Model):

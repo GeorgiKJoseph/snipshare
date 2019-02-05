@@ -22,11 +22,14 @@ def signup(request):
 @login_required
 def home(request):
     pastebin=Pastebin.objects.order_by('-created_date').filter(author=request.user)
-    friend = Friend.objects.get(current_user=request.user)
-    friends = friend.users.all()
-    for f in friends:
-        temp=Pastebin.objects.filter(author=f.username)
-        pastebin = pastebin | temp
+    try:
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+        for f in friends:
+                temp=Pastebin.objects.filter(author=f.username)
+                pastebin = pastebin | temp
+    except Friend.DoesNotExist:
+        friends=None
     return render(request,'webapp/home.html',{'pastebin':pastebin})
 
 
@@ -90,15 +93,23 @@ def change_friends(request,operation,pk):
 
 @login_required
 def view_others(request):
-        users = User.objects.exclude(id=request.user.id) 
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()        
+        users = User.objects.exclude(id=request.user.id)
+        new_friend = User.objects.get(pk=request.user.pk)
+        Friend.make_friend(request.user,request.user)
+        try: 
+                friend = Friend.objects.get(current_user=request.user)
+                friends = friend.users.all() 
+        except Friend.DoesNotExist:
+                friends=None                       
         return render(request,'webapp/others.html',{'users':users,'friends':friends})
 
 
 @login_required
 def view_friends(request):
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()
+        try:                
+                friend = Friend.objects.get(current_user=request.user)
+                friends = friend.users.all()
+        except Friend.DoesNotExist:
+                friends=None
         args = {'friends':friends}
         return render(request,'webapp/friends.html',args)
