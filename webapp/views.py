@@ -21,7 +21,12 @@ def signup(request):
     
 @login_required
 def home(request):
-    pastebin=Pastebin.objects.order_by('created_date').filter(author=request.user)
+    pastebin=Pastebin.objects.order_by('-created_date').filter(author=request.user)
+    friend = Friend.objects.get(current_user=request.user)
+    friends = friend.users.all()
+    for f in friends:
+        temp=Pastebin.objects.filter(author=f.username)
+        pastebin = pastebin | temp
     return render(request,'webapp/home.html',{'pastebin':pastebin})
 
 
