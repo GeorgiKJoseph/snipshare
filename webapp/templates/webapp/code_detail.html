@@ -12,7 +12,7 @@
 <!--                <form method="POST" class="post-form">{% csrf_token %}
                     {{ form.as_p }}                                          -->
                     <a href="{% url 'change_vote_status' pastebin_pk=x.pk %}">
-                        {% if check == "True" %}
+                        {% if check == "False" %}
                         <button type="button" class="save btn btn-info">Like</button>
                         {% else %}
                         <button type="button" class="save btn btn-danger">Dislike</button>

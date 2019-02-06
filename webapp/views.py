@@ -44,6 +44,9 @@ def change_vote_status(request,pastebin_pk):
 
     if users == None:
         Vote.upvote(pastebin,request.user)
+        y=len(users)
+        pastebin.upvotes=y
+        pastebin.save()
     elif request.user in users:
         Vote.downvote(pastebin,request.user)
         y=len(users)
