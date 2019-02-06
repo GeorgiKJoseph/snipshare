@@ -34,9 +34,47 @@ def home(request):
 
 
 @login_required
+def change_vote_status(request,pastebin_pk):
+    pastebin=Pastebin.objects.get(pk=pastebin_pk)
+    try: 
+        voters = Vote.objects.get(current_pastebin=pastebin)
+        users = voters.users.all()
+    except Vote.DoesNotExist:
+        users=None
+
+    if users == None:
+        Vote.upvote(pastebin,request.user)
+    elif request.user in users:
+        Vote.downvote(pastebin,request.user)
+
+    else:
+        Vote.upvote(pastebin,request.user)
+    y=len(users)
+    pastebin.upvotes=y
+    pastebin.save()
+     
+#    x=get_object_or_404(Pastebin,pk=pastebin_pk)
+#    return render(request,'webapp/code_detail.html',{'x':x})
+    return redirect('code_detail', pk = pastebin_pk)
+
+
+
+@login_required
 def code_detail(request,pk):
     x=get_object_or_404(Pastebin,pk=pk)
-    return render(request,'webapp/code_detail.html',{'x':x})
+    pastebin=Pastebin.objects.get(pk=pk)
+    try: 
+        voters = Vote.objects.get(current_pastebin=pastebin)
+        users = voters.users.all()
+    except Vote.DoesNotExist:
+        users=None
+    if users == None:
+        check = 'False'
+    elif request.user in users:
+        check = 'True'
+    else:
+        check = 'False'                                  #here check is used to decide the button (like/dislike)
+    return render(request,'webapp/code_detail.html',{'x':x,'check':check})
 
 
 @login_required

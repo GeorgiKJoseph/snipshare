@@ -45,18 +45,35 @@ class Pastebin(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     upvotes=models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.title
+
+class Vote(models.Model):
+    users=models.ManyToManyField(User, null=True, blank=True)
+    current_pastebin = models.ForeignKey(Pastebin,on_delete=models.CASCADE, related_name='current_bin', null=True)
+
+    @classmethod
+    def upvote(cls,current_pastebin,current_user):
+        vote, created = cls.objects.get_or_create(
+            current_pastebin=current_pastebin
+        )
+        vote.users.add(current_user)
+    
+    @classmethod
+    def downvote(cls,current_pastebin,current_user):
+        vote, created = cls.objects.get_or_create(
+            current_pastebin=current_pastebin
+        )
+        vote.users.remove(current_user)
+
+
 
 #    up_vote= ListCharField(
 #        base_field=CharField(max_length=50),
 #        max_length=(51*25)
 #    )
 
-    def __str__(self):
-        return self.title
 
-class Vote(models.Model):
-    acc_pk=models.IntegerField()
-    pastebin_pk=models.IntegerField()
 
 #account model... 
 class Account(models.Model):

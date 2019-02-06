@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^profile/view/(?P<pk>\d+)/$',views.view_profile, name='view_profile_with_pk'),                   #view others profile
     url(r'^profile/others/$',views.view_others, name='view_others'),                                     #view friends list
     url(r'^profile/friends/$',views.view_friends, name='view_friends'),                                     #view friends list
-    url(r'^profile/friends/change/(?P<operation>.+)/(?P<pk>\d+)/$',views.change_friends,name='change_friends')
+    url(r'^profile/friends/change/(?P<operation>.+)/(?P<pk>\d+)/$',views.change_friends,name='change_friends'),
+    url(r'^profile/vote/(?P<pastebin_pk>\d+)/$',views.change_vote_status,name='change_vote_status'),    
 ]

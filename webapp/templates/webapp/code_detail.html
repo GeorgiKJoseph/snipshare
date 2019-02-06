@@ -2,21 +2,23 @@
 
 {% block content %}
 
-
-
             <div>
                
                <p>{{x.author}} @{{x.created_date}}</p>
                <h2>{{ x.title }}</h2> 
                <h6>{{ x.upvotes }} Likes _ _ _ _ _<a>{{x.language}}</a></h6>
-      
+
                <p>{{x.code|linebreaksbr}}</p>
-                <form method="POST" class="post-form">{% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="save btn btn-info">Like</button>
+<!--                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}                                          -->
+                    <a href="{% url 'change_vote_status' pastebin_pk=x.pk %}">
+                        {% if check == "True" %}
+                        <button type="button" class="save btn btn-info">Like</button>
+                        {% else %}
+                        <button type="button" class="save btn btn-danger">Dislike</button>
+                        {% endif %}
+                    </a>
                 </form>
            </div>
-
-  
 
 {% endblock %}
