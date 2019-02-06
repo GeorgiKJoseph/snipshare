@@ -44,19 +44,19 @@ def change_vote_status(request,pastebin_pk):
 
     if users == None:
         Vote.upvote(pastebin,request.user)
-        y=len(users)
-        pastebin.upvotes=y
-        pastebin.save()
     elif request.user in users:
         Vote.downvote(pastebin,request.user)
-        y=len(users)
-        pastebin.upvotes=y
-        pastebin.save()
     else:
         Vote.upvote(pastebin,request.user)
-        y=len(users)
-        pastebin.upvotes=y
-        pastebin.save()
+    pastebin=Pastebin.objects.get(pk=pastebin_pk)
+    try: 
+        voters = Vote.objects.get(current_pastebin=pastebin)
+        users = voters.users.all()
+    except Vote.DoesNotExist:
+        users=None
+    y=len(users)
+    pastebin.upvotes=y
+    pastebin.save()
      
 #    x=get_object_or_404(Pastebin,pk=pastebin_pk)
 #    return render(request,'webapp/code_detail.html',{'x':x})
