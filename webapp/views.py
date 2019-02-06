@@ -46,12 +46,14 @@ def change_vote_status(request,pastebin_pk):
         Vote.upvote(pastebin,request.user)
     elif request.user in users:
         Vote.downvote(pastebin,request.user)
-
+        y=len(users)
+        pastebin.upvotes=y
+        pastebin.save()
     else:
         Vote.upvote(pastebin,request.user)
-    y=len(users)
-    pastebin.upvotes=y
-    pastebin.save()
+        y=len(users)
+        pastebin.upvotes=y
+        pastebin.save()
      
 #    x=get_object_or_404(Pastebin,pk=pastebin_pk)
 #    return render(request,'webapp/code_detail.html',{'x':x})
