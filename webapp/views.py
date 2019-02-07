@@ -14,9 +14,7 @@ def signup(request):
         if form.is_valid():
             form.save()
             return redirect('/login')
-        else:
-            form.save()
-            return redirect('/login')
+#        else:
 #            form= AccountForm()
 #            return render(request, 'webapp/signup.html',{'form':form})
     else:

@@ -31,10 +31,13 @@ class UserAccount(models.Model):
     city = models.CharField(max_length=50,default='')
     phone = models.IntegerField(default=0)
 
-    def create_account(sender, **kwargs):
-        if kwargs['created']:
-            user_account= UserAccount.objects.create(user=kwargs['instance'])
-            post_save.connect(create_account, sender=User) 
+def create_account(sender, **kwargs):
+    if kwargs['created']:
+        user_account= UserAccount.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_account, sender=User)
+
+
 
 
 class Pastebin(models.Model):
@@ -58,6 +61,7 @@ class Vote(models.Model):
             current_pastebin=current_pastebin
         )
         vote.users.add(current_user)
+        
     
     @classmethod
     def downvote(cls,current_pastebin,current_user):
