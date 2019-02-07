@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Pastebin, UserAccount, Vote, Friend
-from .forms import PastebinForm, AccountForm, LoginForm, EditProfileForm
+from .forms import PastebinForm, AccountForm, LoginForm, EditProfileForm, SearchForm
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
@@ -86,6 +86,8 @@ def code_detail(request,pk):
     return render(request,'webapp/code_detail.html',{'x':x,'check':check,'share_code':share_code})
 
 
+
+
 @login_required
 def view_profile(request, pk=None):   #this view can be call from friends.html to view friend's profile(no done yet)
         if pk:
@@ -124,6 +126,22 @@ def add_new(request):
     else:
         form = PastebinForm()
         return render(request,'webapp/add_new.html',{'form':form})
+
+@login_required
+def search(request):
+    check = 'available'
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            pastebin=Pastebin.objects.order_by('-created_date').filter(title=post.title)
+            if len(pastebin) == 0:
+                check = 'notavailable'
+            form = SearchForm()
+            return render(request,'webapp/search.html',{'form':form,'pastebin':pastebin,'check':check})        
+    else:
+        form = SearchForm()
+        return render(request,'webapp/search.html',{'form':form,'check':check})
 
 
 @login_required

@@ -1,0 +1,29 @@
+{% extends 'webapp/base.html' %}
+
+
+{% block content %}
+<h2>Search</h2>
+<br><hr>
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit" class="save btn btn-info"><i class="fa fa-search"></i></button>
+</form>
+<br><hr>
+
+{% if check == "notavailable" %}
+    <h3>No Search Results</h3>
+{% else %}
+    {% for x in pastebin %}
+        <div>   
+            <p><b>{{x.author}}</b> &#8729   {{x.created_date|timesince}}</p>
+            <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
+            <h6>{{ x.upvotes }} Likes _______________<a>{{x.language}}</a></h6>
+            <p>{{x.code|linebreaksbr}}</p>
+            <hr>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

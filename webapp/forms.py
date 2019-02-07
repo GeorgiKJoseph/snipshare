@@ -34,6 +34,11 @@ class PastebinForm(forms.ModelForm):
         model = Pastebin
         fields = ('title', 'language', 'code',)
 
+class SearchForm(forms.ModelForm):
+    class Meta:
+        model = Pastebin
+        fields = ('title',)
+
 class VoteForm(forms.ModelForm):
     class Meta:
         model = Vote

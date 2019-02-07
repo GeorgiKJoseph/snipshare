@@ -7,6 +7,8 @@ urlpatterns = [
     path('home/',views.home,name='home'),                                                                  #home page
     path('x/<int:pk>/', views.code_detail, name='code_detail'),                                            #view code details
     path('add/new',views.add_new, name='add_new'),                                                         #add new pastebin
+    path('search/',views.search, name='search'),                                                         #search
+
     path('',views.signup, name='signup'),                                                                  #redirect to signup page  
                                                                                                         
     url(r'^profile/edit/$',views.edit_profile, name='edit_profile'),                                       #edit profile
