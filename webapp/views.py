@@ -15,8 +15,10 @@ def signup(request):
             form.save()
             return redirect('/login')
         else:
-            form= AccountForm()
-            return render(request, 'webapp/signup.html',{'form':form})
+            form.save()
+            return redirect('/login')
+#            form= AccountForm()
+#            return render(request, 'webapp/signup.html',{'form':form})
     else:
         form= AccountForm()
         return render(request, 'webapp/signup.html',{'form':form})
