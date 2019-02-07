@@ -7,9 +7,9 @@
 
 {% for x in pastebin %}
 <div>   
-    <p>{{x.author}} @{{x.created_date}}</p>
+    <p><b>{{x.author}}</b> &#8729   {{x.created_date|timesince}}</p>
     <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
-    <h6>{{ x.upvotes }} Likes _______________{{x.language}}</h6>
+    <h6>{{ x.upvotes }} Likes _______________<a>{{x.language}}</a></h6>
     <p>{{x.code|linebreaksbr}}</p>
     <hr>
 </div>

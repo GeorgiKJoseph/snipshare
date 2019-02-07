@@ -2,23 +2,27 @@
 
 {% block content %}
 
-            <div>
-               
-               <p>{{x.author}} @{{x.created_date}}</p>
-               <h2>{{ x.title }}</h2> 
-               <h6>{{ x.upvotes }} Likes _ _ _ _ _<a>{{x.language}}</a></h6>
+<div>
+    
+    <p>{{x.author}} &#8729 {{x.created_date|timesince}}</p>
+    <h2>{{ x.title }}</h2> 
+    <h6>{{ x.upvotes }} Likes _ _ _ _ _<a>{{x.language}}</a></h6>
 
-               <p>{{x.code|linebreaksbr}}</p>
+    <a href="https://twitter.com/home?status={{ share_code }}
+    %20%0D%0A%0D%0Asource%20%20{{ request.build_absolute_uri }}" class="fa fa-twitter">
+        </a>
+    <hr>
+    <p>{{x.code|linebreaksbr}}</p>
 <!--                <form method="POST" class="post-form">{% csrf_token %}
-                    {{ form.as_p }}                                          -->
-                    <a href="{% url 'change_vote_status' pastebin_pk=x.pk %}">
-                        {% if check == "False" %}
-                        <button type="button" class="save btn btn-info">Like</button>
-                        {% else %}
-                        <button type="button" class="save btn btn-danger">Dislike</button>
-                        {% endif %}
-                    </a>
-                </form>
-           </div>
+        {{ form.as_p }}                                          -->
+        <a href="{% url 'change_vote_status' pastebin_pk=x.pk %}">
+            {% if check == "False" %}
+            <button type="button" class="save btn btn-info">Like</button>
+            {% else %}
+            <button type="button" class="save btn btn-danger">Dislike</button>
+            {% endif %}
+        </a>
+    </form>
+</div>
 
 {% endblock %}

@@ -5,7 +5,7 @@
 <h2>Friends</h2>
 <br><hr>
 {% for friend in friends %}   
-    <h4><a href="{% url 'view_profile_with_pk' pk=user.pk %}">{{ friend.username }}</a></h4>  
+    <h4><a href="{% url 'view_profile_with_pk' pk=friend.pk %}">{{ friend.username }}</a></h4>  
                                 <!--here view_profile_with_pk is the name given to the link
                                     profile/view/<int:pk> in webapp.urls.py -->
     <a href="{% url 'change_friends' operation='lose' pk=friend.pk %}" >                                   

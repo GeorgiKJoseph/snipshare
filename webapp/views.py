@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
+from urllib.parse import quote_plus
 
 
 def signup(request):
@@ -13,7 +14,9 @@ def signup(request):
         if form.is_valid():
             form.save()
             return redirect('/login')
-    
+        else:
+            form= AccountForm()
+            return render(request, 'webapp/signup.html',{'form':form})
     else:
         form= AccountForm()
         return render(request, 'webapp/signup.html',{'form':form})
@@ -79,7 +82,8 @@ def code_detail(request,pk):
         check = 'True'
     else:
         check = 'False'                                  #here check is used to decide the button (like/dislike)
-    return render(request,'webapp/code_detail.html',{'x':x,'check':check})
+    share_code = quote_plus(pastebin.code)
+    return render(request,'webapp/code_detail.html',{'x':x,'check':check,'share_code':share_code})
 
 
 @login_required
