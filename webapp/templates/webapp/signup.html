@@ -48,6 +48,11 @@ body {font-size:16px;}
 
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
   <div class='container'>
+    {% if check == 1%}
+    <div class="w3-container w3-orange">
+        <h5>! email ID is not valid</h5>
+      </div>
+    {% endif %}
     <h2>Sign Up</h2>
     <br><hr>
     <form method="POST" class="post-form">{% csrf_token %}

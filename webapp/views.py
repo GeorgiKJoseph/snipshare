@@ -9,14 +9,15 @@ from urllib.parse import quote_plus
 
 
 def signup(request):
-    if request.method=='POST':
-        form= AccountForm(request.POST)
+    if request.method == 'POST':
+        form = AccountForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/login')
-#        else:
-#            form= AccountForm()
-#            return render(request, 'webapp/signup.html',{'form':form})
+        else:
+            check = 1
+            form= AccountForm()
+            return render(request, 'webapp/signup.html',{'form':form,'check':check})
     else:
         form= AccountForm()
         return render(request, 'webapp/signup.html',{'form':form})
