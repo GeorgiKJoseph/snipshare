@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -21,16 +22,23 @@ body {font-size:16px;}
 <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-64"><b>SnipShare</b></h3>
+    <h2 class="w3-padding-64"><b>SnipShare</b></h2>
   </div>
   <div class="w3-bar-block">
-    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="/profile/view" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a> 
-    <a href="/profile/others" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Others</a>
-    <a href="/profile/friends" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Friends</a>
-    <a href="/search" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Search</a> 
-    <a href="{% url 'add_new' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Add</a> 
-    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">LogOut</a> 
+    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span class="glyphicon glyphicon-home"></span> &nbsp; &nbsp; Home</a> 
+    <a href="/profile/view" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp; Profile</a> 
+    <a href="/profile/others" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <i class="material-icons">&#xe7fe;</i>&nbsp;&nbsp;&nbsp; Others</a>
+    <a href="/profile/friends" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <i class="material-icons">people</i>&nbsp;&nbsp;&nbsp; Friends</a>
+    <a href="/search" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp;&nbsp; Search</a> 
+    <a href="{% url 'add_new' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;&nbsp; Add</a> 
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;&nbsp; Log Out</a> 
    
   </div>
 </nav>

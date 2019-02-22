@@ -4,12 +4,14 @@
 
 <h2>Home</h2>
 <br><hr>
-
 {% for x in pastebin %}
-<div>   
+<div>
     <p><b>{{x.author}}</b> &#8729   {{x.created_date|timesince}}</p>
     <h2><a href="{% url 'code_detail' pk=x.pk %}">{{ x.title }}</a></h2> 
-    <h6>{{ x.upvotes }} Likes _______________<a>{{x.language}}</a></h6>
+    <h6>{{ x.upvotes }} <i class="fa fa-heart" style="color:red"> </i> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8729&#8729&#8729
+        <a>{{x.language}}</a></h6>
     <p>{{x.code|linebreaksbr}}</p>
     <hr>
 </div>

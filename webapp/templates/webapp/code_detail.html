@@ -4,9 +4,12 @@
 
 <div>
     
-    <p>{{x.author}} &#8729 {{x.created_date|timesince}}</p>
+    <p><b>{{x.author}}</b> &#8729 {{x.created_date|timesince}}</p>
     <h2>{{ x.title }}</h2> 
-    <h6>{{ x.upvotes }} Likes _ _ _ _ _<a>{{x.language}}</a></h6>
+    <h6><d style="color:black">{{ x.upvotes }}</d>&nbsp;<i class="fa fa-heart" style="color:red"> </i>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &#8729 &#8729 &#8729 <a>{{x.language}}</a></h6>
 
     <a href="https://twitter.com/home?status={{ share_code }}
     %20%0D%0A%0D%0Asource%20%20{{ request.build_absolute_uri }}" class="fa fa-twitter">
@@ -17,9 +20,11 @@
         {{ form.as_p }}                                          -->
         <a href="{% url 'change_vote_status' pastebin_pk=x.pk %}">
             {% if check == "False" %}
-            <button type="button" class="save btn btn-info">Like</button>
+            <button type="button" class="save btn btn-info">
+                <span class="glyphicon glyphicon-thumbs-up"></span></button>
             {% else %}
-            <button type="button" class="save btn btn-danger">Dislike</button>
+            <button type="button" class="save btn btn-danger">
+                <span class="glyphicon glyphicon-thumbs-down"></button>
             {% endif %}
         </a>
     </form>
