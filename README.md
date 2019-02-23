@@ -1,2 +1,2 @@
-# snipshare
-######a webapp to share codes and snippets
+# SnipShare
+###### a webapp to share codes and snippets
