@@ -26,16 +26,16 @@ class Friend(models.Model):
         friend.users.remove(new_friend)
 
 
-class UserAccount(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    city = models.CharField(max_length=50,default='')
-    phone = models.IntegerField(default=0)
-
-def create_account(sender, **kwargs):
-    if kwargs['created']:
-        user_account= UserAccount.objects.create(user=kwargs['instance'])
-
-post_save.connect(create_account, sender=User)
+#class UserAccount(models.Model):
+#    user = models.OneToOneField(User, on_delete = models.CASCADE)
+#    city = models.CharField(max_length=50,default='')
+#    phone = models.IntegerField(default=0)
+#
+#def create_account(sender, **kwargs):
+#    if kwargs['created']:
+#        user_account= UserAccount.objects.create(user=kwargs['instance'])
+#
+#post_save.connect(create_account, sender=User)
 
 
 
@@ -80,10 +80,10 @@ class Vote(models.Model):
 
 
 #account model... 
-class Account(models.Model):
-    user_name = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.user_name
+#class Account(models.Model):
+#    user_name = models.CharField(max_length=50)
+#    password = models.CharField(max_length=50)
+#    email = models.EmailField()
+#
+#    def __str__(self):
+#        return self.user_name

@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Pastebin, UserAccount, Vote, Friend
-from .forms import PastebinForm, AccountForm, LoginForm, EditProfileForm, SearchForm
+from .models import Pastebin, Vote, Friend
+from .forms import PastebinForm, AccountForm, EditProfileForm, SearchForm
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from urllib.parse import quote_plus
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = AccountForm(request.POST)
+    form = AccountForm(request.POST)
+    if request.method == 'POST':        
         if form.is_valid():
             form.save()
             return redirect('/login')

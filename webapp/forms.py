@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import Account, Pastebin, Vote
+from .models import Pastebin, Vote
 
 class AccountForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -13,7 +13,7 @@ class AccountForm(UserCreationForm):
         'last_name',
         'email',
         'password1',
-        'password2'
+        'password2',
         )
 
     def save(self, commit=True):
@@ -44,10 +44,10 @@ class VoteForm(forms.ModelForm):
         model = Vote
         fields = ()
 
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model = Account
-        fields = ('user_name','password',)
+#class LoginForm(forms.ModelForm):
+#    class Meta:
+#        model = Account
+#        fields = ('user_name','password',)
 
 class EditProfileForm(UserChangeForm):
     class Meta:
